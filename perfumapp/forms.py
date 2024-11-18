@@ -8,13 +8,17 @@ class OwnerSignupForm(forms.ModelForm):
         max_length=150,
         widget=forms.TextInput(attrs={'class': 'form-control'})
     )
+    email = forms.EmailField(
+        max_length=254,
+        widget=forms.EmailInput(attrs={'class': 'form-control'})
+    )
     password = forms.CharField(
         widget=forms.PasswordInput(attrs={'class': 'form-control'})
     )
 
     class Meta:
         model = User
-        fields = ['username', 'password']
+        fields = ['username', 'email', 'password']
 
     def save(self, commit=True):
         user = super().save(commit=False)
