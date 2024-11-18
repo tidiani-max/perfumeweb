@@ -1,0 +1,157 @@
+@media (max-width: 1120px) {
+  .client_section .carousel-control-prev {
+    left: 25%;
+  }
+
+  .client_section .carousel-control-next {
+    right: 25%;
+  }
+}
+
+@media (max-width: 992px) {
+  .hero_area {
+    background-size: 58% 100%;
+  }
+
+  .about_section::before {
+    width: 60%;
+  }
+
+  .client_section .carousel-control-prev {
+    left: 15%;
+  }
+
+  .client_section .carousel-control-next {
+    right: 15%;
+  }
+
+
+}
+
+@media (max-width: 768px) {
+  .hero_area {
+    height: auto;
+    background-size: 144% 53%;
+  }
+
+  .custom_menu-btn button span {
+    background-color: #212121;
+  }
+
+  .slider_section .detail-box {
+    margin-top: 35px;
+    margin-bottom: 150px;
+    text-align: center;
+  }
+
+  .slider_section .carousel_btn-container {
+    margin-bottom: 45px;
+  }
+
+  .about_section::before {
+    width: 115%;
+    height: 60%;
+  }
+
+  .about_section .detail-box {
+    margin-bottom: 45px;
+  }
+
+  .us_section .img-box {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 45px;
+  }
+
+  .client_section .carousel-control-prev {
+    left: 5%;
+  }
+
+  .client_section .carousel-control-next {
+    right: 5%;
+  }
+
+  .subscribe_section h2 {
+    text-align: center;
+    margin-bottom: 15px;
+
+  }
+
+  .info_section .row>div {
+    text-align: center;
+  }
+
+  .info_section .row>div:not(:nth-last-child(1)) {
+    margin-bottom: 25px;
+  }
+
+  .info_section .info_link-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+}
+
+@media (max-width: 576px) {
+  .User_option {
+    display: none;
+  }
+
+  .slider_section .detail-box h1 {
+    font-size: 6rem;
+  }
+
+  .client_section .carousel-control-prev,
+  .client_section .carousel-control-next {
+    top: initial;
+    bottom: -75px;
+  }
+
+  .client_section .carousel-control-prev {
+    left: calc(50% - 60px);
+  }
+
+  .client_section .carousel-control-next {
+    right: calc(50% - 60px);
+  }
+}
+
+@media (max-width: 480px) {
+  .subscribe_section form {
+    flex-direction: column;
+  }
+
+  .subscribe_section form button {
+    transform: none;
+    margin-top: 15px;
+  }
+
+  .subscribe_section .box {
+    padding: 15px;
+  }
+
+}
+
+@media (max-width: 420px) {
+  .about_section::before {
+    height: 72%;
+  }
+}
+
+@media (max-width: 375px) {
+  .slider_section .detail-box h2 {
+    font-size: 2.5rem;
+  }
+
+  .slider_section .detail-box h1 {
+    font-size: 5rem;
+  }
+
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1170px;
+  }
+}

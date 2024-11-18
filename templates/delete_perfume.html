@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Delete Product{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6 text-center">
+        <h2>Are you sure you want to delete this perfume?</h2>
+        <p><strong>{{ perfume.name }}</strong></p>
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Yes, Delete</button>
+            <a href="{% url 'perfume_list' %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

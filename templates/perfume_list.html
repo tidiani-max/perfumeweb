@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Perfume List{% endblock %}
+{% block content %}
+<div class="container">
+    <h1 class="text-center my-4">Perfume List</h1>
+    <div class="row">
+        {% for perfume in perfumes %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    {% if perfume.image %}
+                        <img src="{{ perfume.image.url }}" class="card-img-top" alt="{{ perfume.name }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ perfume.name }}</h5>
+                        <p class="card-text">{{ perfume.description|truncatewords:20 }}</p>
+                        <p class="card-text"><strong>Price:</strong> ${{ perfume.price }}</p>
+                        <a href="{% url 'perfume_detail' perfume.id %}" class="btn btn-primary w-100">View Details</a>
+                    </div>
+                    {% if user.is_authenticated and user.profile.is_owner %}
+                        <div class="card-footer d-flex justify-content-between">
+                            <a href="{% url 'edit_perfume' perfume.id %}" class="btn btn-warning btn-sm">Edit</a>
+                            <form method="POST" action="{% url 'delete_perfume' perfume.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        {% empty %}
+            <p class="text-center">No perfumes available.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

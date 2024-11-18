@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block title %}{{ perfume.name }}{% endblock %}
+{% block content %}
+
+
+<section class="product_section layout_padding">
+    <div class="container">
+      </div>
+      <div class="product_container">
+        <div class="box">
+          <a href="{% url 'perfume_detail' perfume.id %}">
+            <div class="img-box">
+              <img src="{{ perfume.image.url }}" alt="">
+            </div>
+          </a>
+          <div class="detail-box">
+            <h5>
+              {{ perfume.name }}
+            </h5>
+            <p>{{ perfume.description }}</p>
+            <h4>
+              <span>$</span>{{ perfume.price }}
+            </h4>
+            <a href="{{ whatsapp_link }}" class="btn btn-success" target="_blank">
+              Contact via WhatsApp
+          </a>
+        </div>
+        <br>
+            {% if user.is_authenticated and user.profile.is_owner %}
+          <div class="container">
+            <div class="card-footer d-flex justify-content-between">
+              <a href="{% url 'edit_perfume' perfume.id %}" class="btn btn-warning btn-sm"> Edit </a>
+              <form method="POST" action="{% url 'delete_perfume' perfume.id %}">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-danger btn-sm"> Delete </button>
+              </form>
+          </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      <div class="btn-box">
+        
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+
+
+

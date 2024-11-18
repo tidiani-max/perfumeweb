@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Product Details{% endblock %}
+
+{% block content %}
+
+<section class="us_section layout_padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5">
+        <div class="img-box">
+          <img src="{% static 'images/MESK.png' %}" alt="">
+        </div>
+      </div>
+      <div class="col-md-7">
+        <div class="detail-box">
+          <div class="heading_container">
+            <h2>
+              Why Choose us
+            </h2>
+          </div>
+          <div class="box">
+            <div class="text-box">
+              <div class="number-box">
+                <h5>
+                  01
+                </h5>
+              </div>
+              <h6>
+                Exquisite Quality: High-quality ingredients and craftsmanship that create a memorable, luxurious scent.
+              </h6>
+            </div>
+            <div class="text-box">
+              <div class="number-box">
+                <h5>
+                  02
+                </h5>
+              </div>
+              <h6>
+                Unique Identity: A distinctive fragrance that stands out and reflects personal style.
+              </h6>
+            </div>
+            <div class="text-box">
+              <div class="number-box">
+                <h5>
+                  03
+                </h5>
+              </div>
+              <h6>
+                Emotional Connection: A scent that evokes feelings of warmth, sensuality, and sophistication.
+              </h6>
+            </div>
+          </div>
+          <div class="btn-box">
+            <a href="{% url 'blog' %}">
+              Read More
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

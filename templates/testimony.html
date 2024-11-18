@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Add Testimony{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <h2 class="text-center">Add Testimony</h2>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-success w-100 mt-3">Add Testimony</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

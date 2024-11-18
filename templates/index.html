@@ -1,0 +1,270 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}Product Details{% endblock %}
+
+{% block content %}
+        
+
+  
+ 
+
+  <section class="product_section layout_padding">
+    <div class="container">
+      <div class="heading_container">
+        <h2>
+          Our Products
+        </h2>
+      </div>
+      <div class="product_container">
+        {% for perfume in perfumes %}
+        <div class="box">
+          {% if perfume.image %}
+          <a href="{% url 'perfume_detail' perfume.id %}">
+            <div class="img-box">
+              <img src="{{ perfume.image.url }}" style="background-color: white; padding: 10px; display: inline-block; border-radius: 8px;" alt="">
+            </div>
+          </a>
+          
+          {% endif %}
+          <div class="detail-box">
+            <h5>
+              {{ perfume.name }}
+            </h5>
+            <h4>
+              <span>IDR</span>{{ perfume.price }}
+            </h4>
+            <a href="{% url 'perfume_detail' perfume.id %}">
+              Buy Now
+            </a>
+          </div>
+          {% if user.is_authenticated and user.profile.is_owner %}
+          <div class="container">
+            <div class="card-footer d-flex justify-content-between">
+              <a href="{% url 'edit_perfume' perfume.id %}" class="btn btn-warning btn-sm"> Edit </a>
+              <form method="POST" action="{% url 'delete_perfume' perfume.id %}">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-danger btn-sm"> Delete </button>
+              </form>
+          </div>
+          </div>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+      <div class="btn-box">
+        <a href="">
+          See More
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- end product section -->
+
+
+  <!-- us section -->
+
+  <section class="us_section layout_padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5">
+          <div class="img-box">
+            <img src="{% static 'images/MESK.png' %}" alt="">
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div class="detail-box">
+            <div class="heading_container">
+              <h2>
+                Why Choose us
+              </h2>
+            </div>
+            <div class="box">
+              <div class="text-box">
+                <div class="number-box">
+                  <h5>
+                    01
+                  </h5>
+                </div>
+                <h6>
+                  Exquisite Quality: High-quality ingredients and craftsmanship that create a memorable, luxurious scent.
+                </h6>
+              </div>
+              <div class="text-box">
+                <div class="number-box">
+                  <h5>
+                    02
+                  </h5>
+                </div>
+                <h6>
+                  Unique Identity: A distinctive fragrance that stands out and reflects personal style.
+                </h6>
+              </div>
+              <div class="text-box">
+                <div class="number-box">
+                  <h5>
+                    03
+                  </h5>
+                </div>
+                <h6>
+                  Emotional Connection: A scent that evokes feelings of warmth, sensuality, and sophistication.
+                </h6>
+              </div>
+            </div>
+            <div class="btn-box">
+              <a href="{% url 'about' %}">
+                Read More
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end us section -->
+
+
+
+
+  <!-- client section -->
+
+  <section class="client_section layout_padding">
+    <div class="container">
+      <div class="heading_container">
+        <h2>Customer's Testimonial</h2>
+      </div>
+      <div id="carouselExample3Controls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          {% for testimony in testimonies %}
+          <div class="carousel-item {% if forloop.first %}active{% endif %}">
+            <div class="box">
+              <div class="img_container">
+                <div class="img-box">
+                  <div class="img_box-inner">
+                    {% if testimony.image %}
+                    <img src="{{ testimony.image.url }}" alt="{{ testimony.name }}">
+                    {% else %}
+                    <img src="{% static 'images/default-profile.png' %}" alt="Default Image">
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+              <div class="detail-box">
+                <h6>{{ testimony.name }}</h6>
+                <p>{{ testimony.testimony }}</p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+  
+        <!-- Carousel Controls -->
+        <a class="carousel-control-prev" href="#carouselExample3Controls" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExample3Controls" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+     
+      </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="heading_container">
+      {% if user.is_authenticated %}
+      {%else%}
+      <a href="{% url 'testimony' %}"><button type="button" class="btn btn-danger">Add testimony</button></a>
+      {% endif %}
+    </div>
+    
+  </section>
+  
+
+
+  <!-- end client section -->
+
+
+  <!-- info section -->
+  <br>
+  <br>
+  <section class="info_section layout_padding">
+    <div class="container">
+      <div class="info_social-container">
+        <h5>
+          Follow Us
+        </h5>
+        <div class="info_social">
+          <div>
+            <a href="">
+              <img src="{% static 'images/facebook-logo-button.png' %}" alt="">
+            </a>
+          </div>
+          <div>
+            <a href="https://www.instagram.com/mesk_perfu/profilecard/?igsh=MWduZmRhOWU3ZzNoYw==">
+              <img src="{% static 'images/instagram.png' %}" alt="">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <h6>
+            About M E S K
+          </h6>
+          <p>
+            "Mesk," derived from the Arabic word for musk, embodies sensuality, warmth, and timeless elegance in perfumery.
+          </p>
+        </div>
+        <div class="col-md-2 offset-lg-1">
+          <h6>
+            Menus
+          </h6>
+          <ul>
+            <li class=" active">
+              <a class="" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="">
+              <a class="" href="{% url 'about' %}">About </a>
+            </li>
+            <li class="">
+              <a class="" href="{% url 'products' %}">Products </a>
+            </li>
+            <li class="">
+              <a class="" href="{% url 'blog' %}"></a>Blog </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-4 col-lg-3">
+          <h6>
+            Contact Us
+          </h6>
+          <div class="info_link-box">
+            <a href="">
+              <img src="{% static 'images/location-white.png' %}" alt="">
+              <span> No.5, jalan semarang</span>
+            </a>
+            <a href="">
+              <img src="{% static 'images/call-white.png' %}" alt="">
+              <span>+62 88289843397</span>
+            </a>
+            <a href="">
+              <img src="{% static 'images/mail-white.png' %}" alt="">
+              <span>mesk@gmail.com</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end info section -->
+{% endblock %}

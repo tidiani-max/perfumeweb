@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Product Details{% endblock %}
+
+{% block content %}
+
+<section class="product_section layout_padding">
+  {% if messages %}
+  <div class="alert alert-success">
+      {% for message in messages %}
+          {{ message }}
+      {% endfor %}
+  </div>
+  {% endif %}
+  <div class="container">
+    <div class="heading_container">
+      <h2>
+        Our Products
+      </h2>
+    </div>
+    <div class="product_container">
+      {% for perfume in perfumes %}
+      <div class="box">
+        {% if perfume.image %}
+        <a href="{% url 'perfume_detail' perfume.id %}">
+          <div class="img-box">
+            <img src="{{ perfume.image.url }}" style="background-color: white; padding: 10px; display: inline-block; border-radius: 8px;" alt="">
+          </div>
+        </a>
+        
+        {% endif %}
+        <div class="detail-box">
+          <h5>
+            {{ perfume.name }}
+          </h5>
+          <h4>
+            <span>IDR </span>{{ perfume.price }}
+          </h4>
+          <a href="{% url 'perfume_detail' perfume.id %}">
+            Buy Now
+          </a>
+        </div>
+        {% if user.is_authenticated and user.profile.is_owner %}
+        <div class="container">
+          <div class="card-footer d-flex justify-content-between">
+            <a href="{% url 'edit_perfume' perfume.id %}" class="btn btn-warning btn-sm"> Edit </a>
+            <form method="POST" action="{% url 'delete_perfume' perfume.id %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger btn-sm"> Delete </button>
+            </form>
+        </div>
+        </div>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}
